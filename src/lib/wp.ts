@@ -35,7 +35,7 @@ async function getJson<T>(path: string, params: Record<string, string | number |
         if (Date.now() - c.t < TTL) return { data: c.data, total: c.total };
       }
     } catch { /* kein Storage verfügbar */ }
-    const res = await fetch(key, { headers: { Accept: 'application/json' } });
+    const res = await fetch(key, { headers: { Accept: 'application/json' }, cache: 'no-cache' });
     if (!res.ok) throw new Error(`WordPress antwortet mit Status ${res.status}`);
     const data = (await res.json()) as T;
     const total = Number(res.headers.get('X-WP-Total') ?? (Array.isArray(data) ? data.length : 1));
