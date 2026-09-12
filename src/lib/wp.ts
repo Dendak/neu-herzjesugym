@@ -24,6 +24,8 @@ const mem = new Map<string, Promise<Result<unknown>>>();
 async function getJson<T>(path: string, params: Record<string, string | number | undefined>): Promise<Result<T>> {
   const url = new URL(`${API}/${path}`);
   for (const [k, v] of Object.entries(params)) if (v !== undefined && v !== '') url.searchParams.set(k, String(v));
+  // Ein Cache vor WordPress liefert sonst minutenlang veraltete JSON-Antworten: URL alle 5 Minuten variieren
+  url.searchParams.set('_v', String(Math.floor(Date.now() / TTL)));
   const key = url.toString();
   const hit = mem.get(key);
   if (hit) return hit as Promise<Result<T>>;
@@ -35,7 +37,7 @@ async function getJson<T>(path: string, params: Record<string, string | number |
         if (Date.now() - c.t < TTL) return { data: c.data, total: c.total };
       }
     } catch { /* kein Storage verfügbar */ }
-    const res = await fetch(key, { headers: { Accept: 'application/json' }, cache: 'no-cache' });
+    const res = await fetch(key, { headers: { Accept: 'application/json' }, cache: 'no-store' });
     if (!res.ok) throw new Error(`WordPress antwortet mit Status ${res.status}`);
     const data = (await res.json()) as T;
     const total = Number(res.headers.get('X-WP-Total') ?? (Array.isArray(data) ? data.length : 1));
