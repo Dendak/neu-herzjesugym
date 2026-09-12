@@ -20,9 +20,9 @@ export default function Home() {
       {/* Hero */}
       <section className="bg-black text-white">
         <div className="wrap-page pb-10 pt-16 text-center sm:pb-14 sm:pt-24">
-          <h1 className="t-hero mx-auto max-w-4xl animate-rise">Privatgymnasium der Herz‑Jesu‑Missionare.</h1>
+          <h1 className="t-hero mx-auto max-w-4xl text-balance animate-rise">Privatgymnasium der Herz-Jesu-Missionare.</h1>
           <p className="t-lead mx-auto mt-5 max-w-xl !text-white/70 animate-rise" style={{ animationDelay: '120ms' }}>
-            Gymnasium, Tagesheim und Internat in Salzburg‑Liefering.
+            Gymnasium, Tagesheim und Internat in Salzburg-Liefering.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-[19px] animate-rise" style={{ animationDelay: '220ms' }}>
             <Arrow to="/seite/anmeldung">Anmeldung</Arrow>
