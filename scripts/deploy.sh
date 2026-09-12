@@ -5,6 +5,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 DOMAIN="${1:-}"
+# Git-Bash wandelt "/" sonst in einen Windows-Pfad um (C:/Program Files/Git/)
+export MSYS_NO_PATHCONV=1 MSYS2_ENV_CONV_EXCL=BASE_PATH
 if [ -n "$DOMAIN" ]; then export BASE_PATH=/; fi
 npm run build
 [ -n "$DOMAIN" ] && echo "$DOMAIN" > dist/CNAME
