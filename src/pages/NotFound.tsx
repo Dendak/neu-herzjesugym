@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useTitle } from '@/lib/hooks';
 import { SCHOOL } from '@/lib/nav';
+import { Arrow } from '@/components/ui';
 
 export default function NotFound() {
   useTitle('Seite nicht gefunden');
   return (
-    <div className="container-x py-24 text-center">
-      <p className="font-display text-8xl font-semibold text-coal-300 dark:text-coal-800">404</p>
-      <h1 className="mt-2 font-display text-4xl font-semibold uppercase tracking-tight">Seite nicht gefunden</h1>
-      <p className="mx-auto mt-4 max-w-md text-muted">Diese Seite gibt es hier (noch) nicht. Vielleicht hilft die Suche weiter – oder die bisherige Website.</p>
-      <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <Link to="/" className="rounded-full bg-msc px-6 py-3 font-semibold text-white hover:bg-msc-600">Zur Startseite</Link>
-        <Link to="/suche" className="rounded-full border border-line px-6 py-3 font-semibold hover:border-brand hover:text-brand">Suche</Link>
-        <a href={SCHOOL.oldSite} target="_blank" rel="noopener" className="rounded-full px-6 py-3 font-semibold text-brand">Bisherige Website</a>
+    <div className="wrap-page py-28 text-center">
+      <p className="t-eyebrow">404</p>
+      <h1 className="t-h1 mt-2">Diese Seite gibt es nicht.</h1>
+      <p className="t-lead mx-auto mt-4 max-w-md">Vielleicht hilft die Suche weiter, oder Sie schauen auf der bisherigen Website nach.</p>
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[17px]">
+        <Link to="/" className="btn-primary">Zur Startseite</Link>
+        <Arrow to="/suche">Suche</Arrow>
+        <Arrow href={SCHOOL.oldSite}>Bisherige Website</Arrow>
       </div>
     </div>
   );

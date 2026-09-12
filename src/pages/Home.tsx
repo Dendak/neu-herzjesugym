@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom';
-import { CalendarDays, GraduationCap, Clock, FileDown, Sun, UserRoundCheck, ExternalLink, ArrowRight, Users, Building2, BookOpenText, HeartHandshake } from 'lucide-react';
+import clsx from 'clsx';
 import { fetchCategories, fetchPagesByParent, fetchPosts, decodeHtml } from '@/lib/wp';
 import { useAsync, useTitle } from '@/lib/hooks';
 import { FACHBEREICHE_PARENT_ID, QUICK_LINKS, SCHOOL } from '@/lib/nav';
 import { HIGHLIGHTS } from '@/lib/links';
-import clsx from 'clsx';
 import PostCard from '@/components/PostCard';
-import { ArrowLink, ErrorBox, Eyebrow, Section, SkeletonCard } from '@/components/ui';
+import { Arrow, ErrorBox, Section, SkeletonCard } from '@/components/ui';
+import { ChevronRight } from 'lucide-react';
 
 const HERO = import.meta.env.BASE_URL + 'hero-luftbild.jpg';
-const ICONS = [CalendarDays, Clock, UserRoundCheck, GraduationCap, Sun, FileDown];
 
 export default function Home() {
   useTitle();
@@ -19,69 +18,53 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-coal-950 text-white">
-        <img src={HERO} alt="Luftaufnahme des Schulgebäudes in Salzburg-Liefering" className="absolute inset-0 -z-10 h-full w-full object-cover object-[center_60%]" fetchPriority="high" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-coal-950 via-coal-950/75 to-coal-950/30" aria-hidden />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-coal-950/90 via-coal-950/40 to-transparent" aria-hidden />
-        <div className="container-x flex min-h-[62vh] flex-col justify-end pb-14 pt-24 sm:min-h-[68vh] lg:pb-20">
-          <Eyebrow className="mb-3 !text-msc-300 animate-fade-up">Gymnasium · Tagesheim · Internat</Eyebrow>
-          <h1 className="max-w-4xl font-display text-5xl font-semibold uppercase leading-[0.95] tracking-tight animate-fade-up sm:text-6xl lg:text-7xl" style={{ animationDelay: '80ms' }}>
-            Privatgymnasium der <span className="text-msc-400">Herz-Jesu-</span>Missionare
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg text-coal-200 animate-fade-up sm:text-xl" style={{ animationDelay: '160ms' }}>
-            Wir bemühen uns, den jungen Menschen auf der Basis des christlichen Glaubens ein entsprechendes Menschen-, Welt- und Gottesbild bewusst zu machen.
+      <section className="bg-black text-white">
+        <div className="wrap-page pb-10 pt-16 text-center sm:pb-14 sm:pt-24">
+          <h1 className="t-hero mx-auto max-w-4xl animate-rise">Privatgymnasium der Herz‑Jesu‑Missionare.</h1>
+          <p className="t-lead mx-auto mt-5 max-w-xl !text-white/70 animate-rise" style={{ animationDelay: '120ms' }}>
+            Gymnasium, Tagesheim und Internat in Salzburg‑Liefering.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3 animate-fade-up" style={{ animationDelay: '240ms' }}>
-            <Link to="/seite/anmeldung" className="inline-flex items-center gap-2 rounded-full bg-msc px-6 py-3 font-semibold text-white shadow-lift transition hover:bg-msc-600">
-              Anmeldung <ArrowRight className="h-4 w-4" aria-hidden />
-            </Link>
-            <Link to="/termine" className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 font-semibold backdrop-blur transition hover:bg-white/20">
-              <CalendarDays className="h-4 w-4" aria-hidden /> Termine
-            </Link>
-            <a href={SCHOOL.webuntis} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full px-5 py-3 font-semibold text-coal-200 transition hover:text-white">
-              WebUntis <ExternalLink className="h-4 w-4" aria-hidden />
-            </a>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-[19px] animate-rise" style={{ animationDelay: '220ms' }}>
+            <Arrow to="/seite/anmeldung">Anmeldung</Arrow>
+            <Arrow to="/termine">Termine</Arrow>
+          </div>
+        </div>
+        <div className="wrap pb-16 sm:pb-24 animate-rise" style={{ animationDelay: '320ms' }}>
+          <div className="img-frame aspect-[16/9] rounded-[22px] bg-[#111] sm:aspect-[3.2/1]">
+            <img src={HERO} alt="Luftaufnahme des Schulgebäudes in Salzburg-Liefering" fetchPriority="high" className="object-[center_55%]" />
           </div>
         </div>
       </section>
 
       {/* Schnellzugriff */}
-      <div className="container-x relative z-10 -mt-8">
-        <ul className="grid grid-cols-2 gap-3 rounded-2xl border border-line bg-card p-3 shadow-card sm:grid-cols-3 lg:grid-cols-6">
-          {QUICK_LINKS.map((q, i) => {
-            const Icon = ICONS[i] ?? CalendarDays;
-            const inner = (
-              <>
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-msc-50 text-msc transition group-hover:bg-msc group-hover:text-white dark:bg-msc/20 dark:text-msc-300"><Icon className="h-5 w-5" aria-hidden /></span>
-                <span className="block">
-                  <span className="block font-semibold leading-tight">{q.label}</span>
-                  <span className="block text-xs text-muted">{q.note}</span>
-                </span>
-              </>
-            );
-            const cls = 'group flex items-center gap-3 rounded-xl p-2.5 transition hover:bg-line/50';
-            return (
-              <li key={q.label}>
-                {q.href ? <a href={q.href} target="_blank" rel="noopener" className={cls}>{inner}</a> : <Link to={q.to ?? '/'} className={cls}>{inner}</Link>}
-              </li>
-            );
-          })}
+      <div className="border-b border-line">
+        <ul className="wrap flex flex-wrap items-center justify-center gap-x-9 gap-y-2 py-4 text-[15px]">
+          {QUICK_LINKS.map((q) => (
+            <li key={q.label}>
+              {q.href
+                ? <a href={q.href} target="_blank" rel="noopener" className="link text-ink hover:text-brand">{q.label}<ChevronRight className="chev opacity-50" aria-hidden /></a>
+                : <Link to={q.to ?? '/'} className="link text-ink hover:text-brand">{q.label}<ChevronRight className="chev opacity-50" aria-hidden /></Link>}
+            </li>
+          ))}
         </ul>
       </div>
 
       {/* Aktuelles */}
-      <Section eyebrow="Aus dem Schulleben" title="Aktuelles" action={<ArrowLink to="/aktuelles">Alle Beiträge</ArrowLink>}>
+      <Section eyebrow="Aktuelles" title="Aus dem Schulleben." action={<Arrow to="/aktuelles">Alle Beiträge</Arrow>}>
         {news.error && <ErrorBox error={news.error} />}
         {news.loading && (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"><div className="md:col-span-2 lg:col-span-3"><SkeletonCard /></div>{Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)}</div>
+          <div className="space-y-14">
+            <SkeletonCard ratio="aspect-[2/1]" />
+            <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">{Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)}</div>
+          </div>
         )}
         {news.data && (() => {
           const [posts, cats] = news.data;
           const [first, ...rest] = posts.items;
           return (
-            <div className="space-y-6">
+            <div className="space-y-16">
               {first && <PostCard post={first} cats={cats} variant="featured" />}
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
                 {rest.map((p) => <PostCard key={p.id} post={p} cats={cats} />)}
               </div>
             </div>
@@ -89,69 +72,85 @@ export default function Home() {
         })()}
       </Section>
 
+      {/* Schwerpunkte */}
+      <Section alt eyebrow="Schuljahr 2026/27" title="Was uns dieses Jahr bewegt.">
+        <div className="space-y-6">
+          {HIGHLIGHTS.slice(0, 2).map((h, i) => (
+            <Tile key={h.title} href={h.href} to={h.to} className={clsx('grid items-center gap-8 p-7 sm:p-10 lg:grid-cols-2 lg:gap-14 lg:p-16', i % 2 === 1 && 'lg:[&>*:first-child]:order-2')}>
+              <div>
+                <p className="t-eyebrow mb-2">{i === 0 ? 'Jahresprogramm' : '5‑Jahresmotto bis 2029'}</p>
+                <h3 className="t-h2">{h.title}</h3>
+                <p className="t-lead mt-4">{h.text}</p>
+                <span className="link mt-5 text-[17px]">{h.cta}<ChevronRight className="chev" aria-hidden /></span>
+              </div>
+              <div className={clsx('img-frame mx-auto w-full bg-white/60 dark:bg-black/30', h.portrait ? 'aspect-[3/4] max-w-[360px] rounded-[18px]' : 'aspect-[3/2]')}>
+                <img src={h.img} alt="" loading="lazy" className={h.portrait ? 'object-top' : ''} />
+              </div>
+            </Tile>
+          ))}
+          <div className="grid gap-6 md:grid-cols-2">
+            {HIGHLIGHTS.slice(2).map((h) => (
+              <Tile key={h.title} href={h.href} to={h.to} className="p-7 sm:p-10">
+                <div className="img-frame aspect-[16/9]"><img src={h.img} alt="" loading="lazy" /></div>
+                <h3 className="t-h3 mt-6">{h.title}</h3>
+                <p className="mt-2 text-[17px] leading-[1.45] text-muted">{h.text}</p>
+                <span className="link mt-4 text-[17px]">{h.cta}<ChevronRight className="chev" aria-hidden /></span>
+              </Tile>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Leitbild */}
+      <section className="py-24 sm:py-32">
+        <div className="wrap-page text-center">
+          <p className="t-eyebrow mb-4">Leitbild</p>
+          <blockquote className="t-h2 mx-auto max-w-4xl !font-medium">
+            „Wir bemühen uns, den jungen Menschen auf der Basis des christlichen Glaubens ein entsprechendes Menschen‑, Welt‑ und Gottesbild bewusst zu machen.“
+          </blockquote>
+          <div className="mt-8 text-[19px]"><Arrow to="/seite/leitbild-schulprofil">Leitbild & Schulprofil</Arrow></div>
+        </div>
+      </section>
+
       {/* Fachbereiche */}
-      <Section eyebrow="Unterricht" title="Fachbereiche" className="bg-coal-50/60 dark:bg-coal-950/40" action={<ArrowLink to="/fachbereiche">Alle Fachbereiche</ArrowLink>}>
+      <Section alt eyebrow="Unterricht" title="Fachbereiche." action={<Arrow to="/fachbereiche">Alle Fachbereiche</Arrow>}>
         {subjects.error && <ErrorBox error={subjects.error} />}
-        <ul className="flex flex-wrap gap-2.5">
-          {subjects.loading && Array.from({ length: 18 }).map((_, i) => <li key={i} className="skeleton h-10 w-32 rounded-full" />)}
+        <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+          {subjects.loading && Array.from({ length: 12 }).map((_, i) => <li key={i} className="skeleton h-[72px] rounded-[18px] bg-card" />)}
           {subjects.data?.map((p) => (
             <li key={p.id}>
-              <Link to={`/seite/${p.slug}`} className="inline-flex items-center rounded-full border border-line bg-card px-4 py-2 text-sm font-semibold transition hover:-translate-y-0.5 hover:border-brand hover:text-brand hover:shadow-soft">
-                {decodeHtml(p.title.rendered)}
+              <Link to={`/seite/${p.slug}`} className="group flex h-full items-center justify-between gap-3 rounded-[18px] bg-card px-5 py-5 transition duration-300 ease-apple hover:shadow-img">
+                <span className="text-[17px] font-semibold leading-tight tracking-tight2">{decodeHtml(p.title.rendered)}</span>
+                <ChevronRight className="h-4 w-4 shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:text-brand" aria-hidden />
               </Link>
             </li>
           ))}
         </ul>
       </Section>
 
-      {/* Schwerpunkte: Jahresmotto, AMETUR, Gebetsinitiative, Video */}
-      <Section eyebrow="Schuljahr 2026/27" title="Unsere Schwerpunkte">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {HIGHLIGHTS.map((h) => {
-            const inner = (
-              <>
-                <div className={clsx('overflow-hidden bg-coal-100 dark:bg-coal-800', h.portrait ? 'aspect-[4/3]' : 'aspect-[16/10]')}>
-                  <img src={h.img} alt="" loading="lazy" className={clsx('h-full w-full transition duration-700 group-hover:scale-[1.03]', h.portrait ? 'object-cover object-top' : 'object-cover')} />
-                </div>
-                <div className="flex grow flex-col p-5">
-                  <h3 className="font-display text-2xl font-semibold leading-tight group-hover:text-brand">{h.title}</h3>
-                  <p className="mt-2 grow text-sm text-muted">{h.text}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand">{h.cta}{h.href ? <ExternalLink className="h-3.5 w-3.5" aria-hidden /> : <ArrowRight className="h-3.5 w-3.5" aria-hidden />}</span>
-                </div>
-              </>
-            );
-            const cls = 'group flex flex-col overflow-hidden rounded-2xl border border-line bg-card shadow-soft transition hover:-translate-y-0.5 hover:shadow-card';
-            return h.href
-              ? <a key={h.title} href={h.href} target="_blank" rel="noopener" className={cls}>{inner}</a>
-              : <Link key={h.title} to={h.to ?? '/'} className={cls}>{inner}</Link>;
-          })}
-        </div>
-      </Section>
-
       {/* Schulgemeinschaft */}
-      <Section eyebrow="Miteinander" title="Schulgemeinschaft">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <Section eyebrow="Schulgemeinschaft" title="Menschen, die die Schule tragen.">
+        <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { icon: Building2, title: 'Schulleitung & Sekretariat', text: 'Direktion, Administration, Sekretariat und Buchhaltung – Ihre Ansprechpersonen im Haus.', to: '/seite/schulleitung' },
-            { icon: Users, title: 'Lehrerinnen & Lehrer', text: 'Das Kollegium mit Kontaktadressen; Sprechstunden über WebUntis.', to: '/seite/lehrer-2' },
-            { icon: Sun, title: 'Tagesheim', text: 'Betreuung, Lernzeit, Mittagessen und Freizeit am Nachmittag.', to: '/seite/tagesheim' },
-            { icon: HeartHandshake, title: 'Gebetsinitiative', text: 'Spirituelles Angebot der Schulgemeinschaft im Geist der Herz-Jesu-Missionare.', to: '/seite/gebetsinitiative' },
+            { title: 'Schulleitung & Sekretariat', text: 'Direktion, Administration, Sekretariat und Buchhaltung: Ihre Ansprechpersonen im Haus.', to: '/seite/schulleitung', cta: 'Zur Schulleitung' },
+            { title: 'Lehrerinnen & Lehrer', text: 'Das Kollegium mit Kontaktadressen. Sprechstunden finden Sie in WebUntis.', to: '/seite/lehrer-2', cta: 'Zum Kollegium' },
+            { title: 'Tagesheim', text: 'Betreuung, Lernzeit, Mittagessen und Freizeit am Nachmittag.', to: '/seite/tagesheim', cta: 'Zum Tagesheim' },
+            { title: 'Internat & Elternverein', text: 'Wohnen an der Schule und die Vertretung der Eltern.', href: SCHOOL.internat, cta: 'Zum Internat' },
           ].map((c) => (
-            <Link key={c.title} to={c.to} className="group rounded-2xl border border-line bg-card p-6 shadow-soft transition hover:-translate-y-0.5 hover:shadow-card">
-              <c.icon className="h-8 w-8 text-msc dark:text-msc-300" aria-hidden />
-              <h3 className="mt-4 font-display text-2xl font-semibold leading-tight group-hover:text-brand">{c.title}</h3>
-              <p className="mt-2 text-sm text-muted">{c.text}</p>
-            </Link>
+            <div key={c.title} className="border-t border-line pt-5">
+              <h3 className="t-h4">{c.title}</h3>
+              <p className="mt-2 text-[15px] leading-[1.45] text-muted">{c.text}</p>
+              <div className="mt-3 text-[15px]"><Arrow to={c.to} href={c.href}>{c.cta}</Arrow></div>
+            </div>
           ))}
-        </div>
-        <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-          <ArrowLink href={SCHOOL.internat}>Internat</ArrowLink>
-          <ArrowLink href={SCHOOL.elternverein}>Elternverein</ArrowLink>
-          <ArrowLink to="/seite/schulerseite">Schülerinnen & Schüler</ArrowLink>
-          <ArrowLink to="/seite/leitbild-schulprofil"><BookOpenText className="mr-1 h-4 w-4" aria-hidden />Leitbild & Schulprofil</ArrowLink>
-          <ArrowLink to="/links">Nützliche Links & Intern</ArrowLink>
         </div>
       </Section>
     </>
   );
+}
+
+function Tile({ href, to, className, children }: { href?: string; to?: string; className?: string; children: React.ReactNode }) {
+  const cls = clsx('group block rounded-[28px] bg-card transition duration-300 ease-apple hover:shadow-img', className);
+  if (href) return <a href={href} target="_blank" rel="noopener" className={cls}>{children}</a>;
+  return <Link to={to ?? '/'} className={cls}>{children}</Link>;
 }

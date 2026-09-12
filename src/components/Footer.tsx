@@ -1,19 +1,17 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, ExternalLink } from 'lucide-react';
-import { SCHOOL, WP_LOGOS } from '@/lib/partners';
-import { Logo } from './Header';
+import { SCHOOL } from '@/lib/nav';
+import { WP_LOGOS } from '@/lib/partners';
 
 const COLS: { title: string; links: { label: string; to?: string; href?: string }[] }[] = [
   {
-    title: 'Schnellzugriff',
+    title: 'Schule',
     links: [
       { label: 'Aktuelles', to: '/aktuelles' },
-      { label: 'Termine', to: '/termine' },
-      { label: 'WebUntis', href: SCHOOL.webuntis },
-      { label: 'Anmeldung', to: '/seite/anmeldung' },
-      { label: 'Downloads', to: '/seite/downloads' },
+      { label: 'Leitbild & Schulprofil', to: '/seite/leitbild-schulprofil' },
       { label: 'Fachbereiche', to: '/fachbereiche' },
-      { label: 'Nützliche Links & Intern', to: '/links' },
+      { label: 'Stundentafeln', to: '/seite/stundentafeln' },
+      { label: 'Downloads', to: '/seite/downloads' },
+      { label: 'Termine', to: '/termine' },
     ],
   },
   {
@@ -22,58 +20,75 @@ const COLS: { title: string; links: { label: string; to?: string; href?: string 
       { label: 'Schulleitung', to: '/seite/schulleitung' },
       { label: 'Sekretariat', to: '/seite/sekretariat' },
       { label: 'Lehrerinnen & Lehrer', to: '/seite/lehrer-2' },
+      { label: 'Schülerinnen & Schüler', to: '/seite/schulerseite' },
+      { label: 'Elternverein', href: SCHOOL.elternverein },
+      { label: 'Gebetsinitiative', to: '/seite/gebetsinitiative' },
+    ],
+  },
+  {
+    title: 'Angebote',
+    links: [
       { label: 'Tagesheim', to: '/seite/tagesheim' },
       { label: 'Internat', href: SCHOOL.internat },
-      { label: 'Elternverein', href: SCHOOL.elternverein },
+      { label: 'Anmeldung 1. Klasse', to: '/seite/anmeldung' },
+      { label: 'Anmeldung Oberstufe', to: '/seite/anmeldung-oberstufe' },
+      { label: 'Tag der offenen Tür', to: '/seite/tag-der-offenen-tuer' },
+      { label: 'Schulshop', href: SCHOOL.schulshop },
+    ],
+  },
+  {
+    title: 'Service',
+    links: [
+      { label: 'WebUntis', href: SCHOOL.webuntis },
+      { label: 'Sprechstunden', href: SCHOOL.sprechstunden },
+      { label: 'Nützliche Links & Intern', to: '/links' },
+      { label: 'Suche', to: '/suche' },
+      { label: 'Kontakt', to: '/seite/impressum' },
     ],
   },
 ];
 
 export default function Footer() {
   return (
-    <footer className="mt-16 bg-coal-950 text-coal-200">
-      <div className="container-x grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
-        <div className="lg:col-span-1">
-          <Logo light />
-          <address className="mt-5 space-y-2 not-italic text-sm">
-            <a href={SCHOOL.maps} target="_blank" rel="noopener" className="flex items-start gap-2 hover:text-white"><MapPin className="mt-0.5 h-4 w-4 shrink-0" aria-hidden /><span>{SCHOOL.street}<br />{SCHOOL.city}</span></a>
-            <a href={SCHOOL.phoneHref} className="flex items-center gap-2 hover:text-white"><Phone className="h-4 w-4" aria-hidden />{SCHOOL.phone}</a>
-            <a href={`mailto:${SCHOOL.mail}`} className="flex items-center gap-2 hover:text-white"><Mail className="h-4 w-4" aria-hidden />{SCHOOL.mail}</a>
-          </address>
+    <footer className="mt-24 bg-alt text-[12px] leading-[1.5] text-muted">
+      <div className="wrap-page py-12">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+          {COLS.map((col) => (
+            <div key={col.title}>
+              <h2 className="mb-3 text-[12px] font-semibold text-ink">{col.title}</h2>
+              <ul className="space-y-2">
+                {col.links.map((l) => (
+                  <li key={l.label}>
+                    {l.href
+                      ? <a href={l.href} target="_blank" rel="noopener" className="hover:text-ink hover:underline">{l.label}</a>
+                      : <Link to={l.to ?? '/'} className="hover:text-ink hover:underline">{l.label}</Link>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-        {COLS.map((col) => (
-          <div key={col.title}>
-            <h2 className="font-display text-lg font-semibold uppercase tracking-wide text-white">{col.title}</h2>
-            <ul className="mt-4 space-y-2 text-sm">
-              {col.links.map((l) => (
-                <li key={l.label}>
-                  {l.href
-                    ? <a href={l.href} target="_blank" rel="noopener" className="inline-flex items-center gap-1 hover:text-white">{l.label}<ExternalLink className="h-3 w-3 opacity-60" aria-hidden /></a>
-                    : <Link to={l.to ?? '/'} className="hover:text-white">{l.label}</Link>}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-        <div>
-          <h2 className="font-display text-lg font-semibold uppercase tracking-wide text-white">Träger & Partner</h2>
-          <div className="mt-4 grid grid-cols-3 gap-3">
-            {WP_LOGOS.map((l) => (
-              <a key={l.alt} href={l.href} target="_blank" rel="noopener" title={l.alt} className="flex aspect-square items-center justify-center rounded-xl bg-white p-2">
-                <img src={l.src} alt={l.alt} loading="lazy" className="max-h-full max-w-full object-contain" />
-              </a>
-            ))}
-          </div>
-          <p className="mt-4 text-xs leading-relaxed text-coal-300">Von der Europäischen Union finanziert. Die geäußerten Ansichten geben ausschließlich die der Autorinnen und Autoren wieder.</p>
+
+        <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-line pt-6">
+          {WP_LOGOS.map((l) => (
+            <a key={l.alt} href={l.href} target="_blank" rel="noopener" title={l.alt} className="opacity-80 grayscale transition hover:opacity-100 hover:grayscale-0">
+              <img src={l.src} alt={l.alt} loading="lazy" className="h-9 w-auto rounded-sm bg-white" />
+            </a>
+          ))}
+          <p className="max-w-xl">Von der Europäischen Union finanziert. Die geäußerten Ansichten geben ausschließlich die der Autorinnen und Autoren wieder.</p>
         </div>
-      </div>
-      <div className="border-t border-white/10">
-        <div className="container-x flex flex-col gap-3 py-5 text-xs text-coal-300 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} {SCHOOL.name}, Salzburg</p>
-          <div className="flex flex-wrap gap-x-5 gap-y-1">
-            <Link to="/seite/impressum-offenlegung" className="hover:text-white">Impressum & Offenlegung</Link>
-            <Link to="/seite/impressum" className="hover:text-white">Kontakt</Link>
-            <a href={SCHOOL.oldSite} target="_blank" rel="noopener" className="hover:text-white">Bisherige Website</a>
+
+        <div className="mt-6 border-t border-line pt-5">
+          <p className="text-ink">
+            {SCHOOL.name} · {SCHOOL.street}, {SCHOOL.city} · <a href={SCHOOL.phoneHref} className="hover:underline">{SCHOOL.phone}</a> · <a href={`mailto:${SCHOOL.mail}`} className="hover:underline">{SCHOOL.mail}</a>
+          </p>
+          <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p>Copyright © {new Date().getFullYear()} {SCHOOL.name}. Alle Rechte vorbehalten.</p>
+            <div className="flex flex-wrap gap-x-5 gap-y-1">
+              <Link to="/seite/impressum-offenlegung" className="hover:text-ink hover:underline">Impressum & Offenlegung</Link>
+              <Link to="/seite/impressum" className="hover:text-ink hover:underline">Kontakt</Link>
+              <a href={SCHOOL.oldSite} target="_blank" rel="noopener" className="hover:text-ink hover:underline">Bisherige Website</a>
+            </div>
           </div>
         </div>
       </div>
