@@ -4,12 +4,12 @@ import { ChevronDown, ExternalLink, Menu, Phone, Mail, Search, X } from 'lucide-
 import clsx from 'clsx';
 import { NAV, SCHOOL, type NavItem } from '@/lib/nav';
 
-const LOGO = import.meta.env.BASE_URL + 'logo-msc.svg';
+const LOGO = import.meta.env.BASE_URL + 'logo-msc.png';
 
 export function Logo({ light }: { light?: boolean }) {
   return (
     <Link to="/" className="flex items-center gap-3" aria-label="Zur Startseite">
-      <img src={LOGO} alt="" className="h-11 w-11 shrink-0 rounded-md" width="44" height="44" />
+      <img src={LOGO} alt="" className="h-11 w-11 shrink-0" width="44" height="44" />
       <span className="leading-none">
         <span className={clsx('block font-display text-2xl font-semibold uppercase tracking-tight', light ? 'text-white' : 'text-coal-900 dark:text-white')}>Privatgymnasium</span>
         <span className={clsx('mt-0.5 block text-[11px] font-medium uppercase tracking-[0.16em]', light ? 'text-coal-200' : 'text-muted')}>der Herz-Jesu-Missionare · Salzburg</span>
