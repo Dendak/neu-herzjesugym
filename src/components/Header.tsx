@@ -10,7 +10,7 @@ export function Wordmark({ className }: { className?: string }) {
   return (
     <Link to="/" className={clsx('flex items-center gap-2.5', className)} aria-label="Zur Startseite">
       <img src={LOGO} alt="" width="28" height="28" className="h-7 w-7 rounded-[6px]" />
-      <span className="font-display text-[15px] font-semibold tracking-tight2">Herz-Jesu-Gymnasium</span>
+      <span className="whitespace-nowrap font-display text-[15px] font-semibold tracking-tight2">Herz-Jesu-Gymnasium</span>
     </Link>
   );
 }
@@ -45,7 +45,7 @@ export default function Header() {
       <div className="bg-[#1d1d1f]/85 backdrop-blur-xl backdrop-saturate-[180%] supports-[backdrop-filter]:bg-[#1d1d1f]/72">
         <div className="wrap flex h-12 items-center justify-between">
           <Wordmark />
-          <nav aria-label="Hauptnavigation" className="hidden items-center xl:flex" onMouseLeave={leave}>
+          <nav aria-label="Hauptnavigation" className="hidden items-center whitespace-nowrap xl:flex" onMouseLeave={leave}>
             {NAV.map((item, i) => item.children ? (
               <button
                 key={item.label}
