@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface: 246 248 251;
+  --card: 255 255 255;
+  --ink: 17 27 43;
+  --muted: 92 104 122;
+  --line: 226 231 238;
+  --brand: 30 74 122;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: 12 19 31;
+    --card: 21 30 45;
+    --ink: 232 237 245;
+    --muted: 156 168 186;
+    --line: 42 55 74;
+    --brand: 125 174 226;
+    color-scheme: dark;
+  }
+}
+
+html { scroll-behavior: smooth; }
+body { @apply bg-surface text-ink font-sans antialiased; }
+:focus-visible { @apply outline-none ring-2 ring-sun ring-offset-2 ring-offset-surface; }
+
+.container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+.skeleton { @apply rounded-lg bg-line/70 animate-pulse; }
+
+/* Inhalte aus WordPress */
+.wp-content { @apply prose prose-lg; }
+.wp-content img { @apply h-auto max-w-full; }
+.wp-content video, .wp-content iframe { @apply w-full rounded-xl; }
+.wp-content video { @apply max-h-[70vh] bg-black; }
+.wp-content iframe { aspect-ratio: 16 / 9; height: auto; }
+.wp-content .wp-block-image, .wp-content figure { @apply my-6; }
+.wp-content .wp-block-image.aligncenter, .wp-content figure.aligncenter { @apply mx-auto text-center; }
+.wp-content .wp-block-image img { @apply mx-auto; }
+.wp-content .wp-block-columns { @apply grid gap-6 md:grid-cols-2; }
+.wp-content .wp-block-gallery, .wp-content .blocks-gallery-grid { @apply grid grid-cols-2 gap-3 md:grid-cols-3 !important; }
+.wp-content .wp-block-gallery figure { @apply m-0; }
+.wp-content .wp-block-gallery img { @apply h-full w-full object-cover; }
+.wp-content table { @apply block overflow-x-auto text-base; }
+.wp-content .has-text-align-center { text-align: center; }
+.wp-content .metaslider { @apply my-6; }
+.wp-content .wp-block-file a:first-child { @apply font-semibold; }
+.wp-content .wp-block-button__link { @apply inline-block rounded-full bg-brand px-5 py-2 font-semibold text-white no-underline; }
+.wp-content p:empty { display: none; }
+.wp-content .metaslider ul.slides { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.wp-content .metaslider ul.slides li { margin: 0; }
+.wp-content .metaslider ul.slides img { margin: 0; height: 100%; object-fit: cover; }
+.wp-content .metaslider .flex-control-nav, .wp-content .metaslider .flex-direction-nav { display: none; }
+.wp-content ul.wp-block-social-links { list-style: none; padding: 0; }
