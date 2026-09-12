@@ -67,7 +67,7 @@ export function Chip({ to, children, active }: { to: string; children: ReactNode
     <Link
       to={to}
       className={clsx('inline-flex items-center rounded-full px-3.5 py-1.5 text-[14px] font-medium transition duration-200',
-        active ? 'bg-ink text-surface' : 'bg-alt text-ink hover:bg-line/60')}
+        active ? 'bg-msc text-white' : 'bg-alt text-ink hover:bg-line/60')}
     >
       {children}
     </Link>

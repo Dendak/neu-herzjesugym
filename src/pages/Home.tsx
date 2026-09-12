@@ -18,19 +18,19 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-black text-white">
+      <section className="bg-gradient-to-b from-msc-700 via-msc-600 to-msc-700 text-white">
         <div className="wrap-page pb-10 pt-16 text-center sm:pb-14 sm:pt-24">
           <h1 className="t-hero mx-auto max-w-4xl text-balance animate-rise">Privatgymnasium der Herz-Jesu-Missionare.</h1>
-          <p className="t-lead mx-auto mt-5 max-w-xl !text-white/70 animate-rise" style={{ animationDelay: '120ms' }}>
+          <p className="t-lead mx-auto mt-5 max-w-xl !text-white/85 animate-rise" style={{ animationDelay: '120ms' }}>
             Gymnasium, Tagesheim und Internat in Salzburg-Liefering.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-[19px] animate-rise" style={{ animationDelay: '220ms' }}>
-            <Arrow to="/seite/anmeldung">Anmeldung</Arrow>
-            <Arrow to="/termine">Termine</Arrow>
+            <Arrow to="/seite/anmeldung" className="!text-white">Anmeldung</Arrow>
+            <Arrow to="/termine" className="!text-white">Termine</Arrow>
           </div>
         </div>
         <div className="wrap pb-16 sm:pb-24 animate-rise" style={{ animationDelay: '320ms' }}>
-          <div className="img-frame aspect-[16/9] rounded-[22px] bg-[#111] sm:aspect-[3.2/1]">
+          <div className="img-frame aspect-[16/9] rounded-[22px] bg-msc-700 shadow-panel sm:aspect-[3.2/1]">
             <img src={HERO} alt="Luftaufnahme des Schulgebäudes in Salzburg-Liefering" fetchPriority="high" className="object-[center_55%]" />
           </div>
         </div>

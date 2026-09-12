@@ -42,10 +42,10 @@ export default function Header() {
 
   return (
     <header ref={headerRef} className="sticky top-0 z-50 text-white">
-      <div className="bg-[#1d1d1f]/85 backdrop-blur-xl backdrop-saturate-[180%] supports-[backdrop-filter]:bg-[#1d1d1f]/72">
-        <div className="wrap flex h-12 items-center justify-between">
-          <Wordmark />
-          <nav aria-label="Hauptnavigation" className="hidden items-center whitespace-nowrap xl:flex" onMouseLeave={leave}>
+      <div className="bg-msc-700/95 backdrop-blur-xl backdrop-saturate-[180%] supports-[backdrop-filter]:bg-msc-700/85">
+        <div className="wrap flex h-12 items-center justify-between gap-6">
+          <Wordmark className="shrink-0" />
+          <nav aria-label="Hauptnavigation" className="hidden shrink-0 items-center whitespace-nowrap xl:flex" onMouseLeave={leave}>
             {NAV.map((item, i) => item.children ? (
               <button
                 key={item.label}
@@ -53,12 +53,12 @@ export default function Header() {
                 aria-expanded={panel === i}
                 onMouseEnter={() => enter(i)}
                 onClick={() => setPanel(panel === i ? null : i)}
-                className={clsx('flex h-12 items-center gap-1 px-3.5 text-[13px] text-white/85 transition hover:text-white', panel === i && 'text-white')}
+                className={clsx('flex h-12 items-center gap-1 px-2.5 text-[13px] text-white/85 transition hover:text-white', panel === i && 'text-white')}
               >
                 {item.label}<ChevronDown className={clsx('h-3 w-3 opacity-60 transition', panel === i && 'rotate-180')} aria-hidden />
               </button>
             ) : (
-              <NavEntry key={item.label} item={item} onMouseEnter={() => enter(-1)} className="flex h-12 items-center gap-1 px-3.5 text-[13px] text-white/85 transition hover:text-white" activeClassName="!text-white" />
+              <NavEntry key={item.label} item={item} onMouseEnter={() => enter(-1)} className="flex h-12 items-center gap-1 px-2.5 text-[13px] text-white/85 transition hover:text-white" activeClassName="!text-white" />
             ))}
             <Link to="/suche" aria-label="Suche" onMouseEnter={() => enter(-1)} className="ml-1 flex h-12 items-center px-2 text-white/85 hover:text-white"><Search className="h-4 w-4" aria-hidden /></Link>
           </nav>
@@ -75,7 +75,7 @@ export default function Header() {
           {current?.children && (
             <div className="wrap grid grid-cols-[220px_1fr] gap-12 py-10">
               <div>
-                <p className="text-[12px] text-white/50">{current.label}</p>
+                <p className="text-[12px] text-white/60">{current.label}</p>
                 <p className="mt-1 font-display text-[24px] font-semibold tracking-tight2">{panelBlurb[current.label] ?? ''}</p>
               </div>
               <ul className="grid grid-cols-2 gap-x-12 gap-y-2.5 self-start lg:grid-cols-3">
@@ -112,7 +112,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
   const [q, setQ] = useState('');
   const navigate = useNavigate();
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-[#1d1d1f] text-white xl:hidden animate-fade" role="dialog" aria-modal="true" aria-label="Menü">
+    <div className="fixed inset-0 z-50 flex flex-col bg-msc-700 text-white xl:hidden animate-fade" role="dialog" aria-modal="true" aria-label="Menü">
       <div className="wrap flex h-12 items-center justify-between">
         <Wordmark />
         <button type="button" onClick={onClose} className="-mr-2 p-2" aria-label="Menü schließen"><X className="h-5 w-5" aria-hidden /></button>
