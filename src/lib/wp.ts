@@ -125,6 +125,12 @@ export function firstImage(html: string, targetW = 800): string | null {
   const video = root.querySelector('video[poster]');
   return video?.getAttribute('poster') ?? null;
 }
+/** Erstes Video eines Beitrags (für Vorschaubilder, wenn kein Bild vorhanden ist). */
+export function firstVideo(html: string): string | null {
+  const root = inert(html);
+  const v = root.querySelector('video');
+  return v?.getAttribute('src') ?? v?.querySelector('source')?.getAttribute('src') ?? null;
+}
 export function hasVideo(html: string) {
   return /<video|youtube\.com\/embed|youtu\.be/.test(html);
 }

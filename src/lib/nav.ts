@@ -51,6 +51,7 @@ export const NAV: NavItem[] = [
       { label: 'Schularzt & Schulpsychologie', to: '/seite/schularzt-schulpsychologe' },
       { label: 'Hausverwaltung', to: '/seite/hausverwaltung' },
       { label: 'Gebetsinitiative', to: '/seite/gebetsinitiative' },
+      { label: 'Nützliche Links & Intern', to: '/links' },
     ],
   },
   { label: 'Tagesheim', to: '/seite/tagesheim' },
@@ -76,5 +77,6 @@ export const QUICK_LINKS: NavItem[] = [
   { label: 'Tagesheim', to: '/seite/tagesheim', note: 'Nachmittagsbetreuung' },
   { label: 'Downloads', to: '/seite/downloads', note: 'Formulare & Infos' },
 ];
+
 
 export const FACHBEREICHE_PARENT_ID = 53;

@@ -3,6 +3,8 @@ import { CalendarDays, GraduationCap, Clock, FileDown, Sun, UserRoundCheck, Exte
 import { fetchCategories, fetchPagesByParent, fetchPosts, decodeHtml } from '@/lib/wp';
 import { useAsync, useTitle } from '@/lib/hooks';
 import { FACHBEREICHE_PARENT_ID, QUICK_LINKS, SCHOOL } from '@/lib/nav';
+import { HIGHLIGHTS } from '@/lib/links';
+import clsx from 'clsx';
 import PostCard from '@/components/PostCard';
 import { ArrowLink, ErrorBox, Eyebrow, Section, SkeletonCard } from '@/components/ui';
 
@@ -102,6 +104,30 @@ export default function Home() {
         </ul>
       </Section>
 
+      {/* Schwerpunkte: Jahresmotto, AMETUR, Gebetsinitiative, Video */}
+      <Section eyebrow="Schuljahr 2026/27" title="Unsere Schwerpunkte">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {HIGHLIGHTS.map((h) => {
+            const inner = (
+              <>
+                <div className={clsx('overflow-hidden bg-coal-100 dark:bg-coal-800', h.portrait ? 'aspect-[4/3]' : 'aspect-[16/10]')}>
+                  <img src={h.img} alt="" loading="lazy" className={clsx('h-full w-full transition duration-700 group-hover:scale-[1.03]', h.portrait ? 'object-cover object-top' : 'object-cover')} />
+                </div>
+                <div className="flex grow flex-col p-5">
+                  <h3 className="font-display text-2xl font-semibold leading-tight group-hover:text-brand">{h.title}</h3>
+                  <p className="mt-2 grow text-sm text-muted">{h.text}</p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand">{h.cta}{h.href ? <ExternalLink className="h-3.5 w-3.5" aria-hidden /> : <ArrowRight className="h-3.5 w-3.5" aria-hidden />}</span>
+                </div>
+              </>
+            );
+            const cls = 'group flex flex-col overflow-hidden rounded-2xl border border-line bg-card shadow-soft transition hover:-translate-y-0.5 hover:shadow-card';
+            return h.href
+              ? <a key={h.title} href={h.href} target="_blank" rel="noopener" className={cls}>{inner}</a>
+              : <Link key={h.title} to={h.to ?? '/'} className={cls}>{inner}</Link>;
+          })}
+        </div>
+      </Section>
+
       {/* Schulgemeinschaft */}
       <Section eyebrow="Miteinander" title="Schulgemeinschaft">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -123,6 +149,7 @@ export default function Home() {
           <ArrowLink href={SCHOOL.elternverein}>Elternverein</ArrowLink>
           <ArrowLink to="/seite/schulerseite">Schülerinnen & Schüler</ArrowLink>
           <ArrowLink to="/seite/leitbild-schulprofil"><BookOpenText className="mr-1 h-4 w-4" aria-hidden />Leitbild & Schulprofil</ArrowLink>
+          <ArrowLink to="/links">Nützliche Links & Intern</ArrowLink>
         </div>
       </Section>
     </>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { PlayCircle, ImageOff } from 'lucide-react';
 import clsx from 'clsx';
-import { categoryNames, decodeHtml, firstImage, formatDate, hasVideo, textExcerpt, type WpCategory, type WpPost } from '@/lib/wp';
+import { categoryNames, decodeHtml, firstImage, firstVideo, formatDate, hasVideo, textExcerpt, type WpCategory, type WpPost } from '@/lib/wp';
 
 export default function PostCard({ post, cats, variant = 'default' }: { post: WpPost; cats?: WpCategory[]; variant?: 'default' | 'featured' | 'compact' }) {
   const img = firstImage(post.content.rendered, variant === 'featured' ? 1200 : 700);
@@ -9,13 +9,14 @@ export default function PostCard({ post, cats, variant = 'default' }: { post: Wp
   const excerpt = textExcerpt(post.content.rendered, variant === 'featured' ? 260 : 140);
   const catList = categoryNames(post, cats);
   const video = hasVideo(post.content.rendered);
+  const vidSrc = img ? null : firstVideo(post.content.rendered);
   const to = `/aktuelles/${post.slug}`;
 
   if (variant === 'compact') {
     return (
       <Link to={to} className="group flex gap-4 rounded-xl p-2 transition hover:bg-line/40">
         <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-lg bg-line">
-          {img ? <img src={img} alt="" loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" /> : <Placeholder small />}
+          {img ? <img src={img} alt="" loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" /> : vidSrc ? <VideoThumb src={vidSrc} /> : <Placeholder small />}
         </div>
         <div className="min-w-0">
           <time className="text-xs text-muted" dateTime={post.date}>{formatDate(post.date)}</time>
@@ -32,7 +33,7 @@ export default function PostCard({ post, cats, variant = 'default' }: { post: Wp
       <div className={clsx('relative shrink-0 overflow-hidden bg-line', featured ? 'aspect-[16/10] lg:aspect-auto lg:w-3/5' : 'aspect-[16/10]')}>
         {img ? (
           <img src={img} alt="" loading={featured ? 'eager' : 'lazy'} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" />
-        ) : <Placeholder />}
+        ) : vidSrc ? <VideoThumb src={vidSrc} /> : <Placeholder />}
         {video && <PlayCircle className="absolute bottom-3 right-3 h-8 w-8 text-white drop-shadow" aria-label="Mit Video" />}
       </div>
       <div className={clsx('flex flex-col p-5', featured && 'lg:justify-center lg:p-10')}>
@@ -49,6 +50,11 @@ export default function PostCard({ post, cats, variant = 'default' }: { post: Wp
       </div>
     </article>
   );
+}
+
+/** Standbild aus dem Video als Vorschau – die Beiträge haben oft nur ein Video und kein Foto. */
+function VideoThumb({ src }: { src: string }) {
+  return <video src={`${src}#t=0.5`} muted playsInline preload="metadata" tabIndex={-1} aria-hidden className="pointer-events-none h-full w-full object-cover" />;
 }
 
 function Placeholder({ small }: { small?: boolean }) {

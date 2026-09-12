@@ -7,6 +7,7 @@ import Page from '@/pages/Page';
 import Fachbereiche from '@/pages/Fachbereiche';
 import Termine from '@/pages/Termine';
 import Search from '@/pages/Search';
+import Links from '@/pages/Links';
 import NotFound from '@/pages/NotFound';
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="seite/:slug" element={<Page />} />
         <Route path="termine" element={<Termine />} />
         <Route path="suche" element={<Search />} />
+        <Route path="links" element={<Links />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

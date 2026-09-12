@@ -13,6 +13,7 @@ const COLS: { title: string; links: { label: string; to?: string; href?: string 
       { label: 'Anmeldung', to: '/seite/anmeldung' },
       { label: 'Downloads', to: '/seite/downloads' },
       { label: 'Fachbereiche', to: '/fachbereiche' },
+      { label: 'Nützliche Links & Intern', to: '/links' },
     ],
   },
   {
