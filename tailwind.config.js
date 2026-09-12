@@ -11,10 +11,9 @@ export default {
         display: ['"Barlow Condensed"', '"Inter"', 'sans-serif'],
       },
       colors: {
-        // Farben aus dem Schulfolder: Marineblau, Weinrot, Sonnengelb
-        navy: { DEFAULT: '#1e4a7a', 50: '#eef4fa', 100: '#d9e6f4', 200: '#b3cde8', 600: '#255a92', 700: '#1a3f68', 800: '#16345a', 900: '#0f2540', 950: '#091829' },
-        wine: { DEFAULT: '#a3234b', 100: '#f8e3ea', 600: '#8d1d40', 700: '#74173a' },
-        sun: { DEFAULT: '#f2cf3f', 100: '#fdf6d8', 300: '#f7df7a', 500: '#e5bd1d' },
+        // Farben des MSC-Logos (Herz-Jesu-Missionare): Rot, Weiß, Schwarz
+        msc: { DEFAULT: '#c8102e', 50: '#fdf0f2', 100: '#fbe0e5', 200: '#f6bcc6', 300: '#ef8a9a', 400: '#e0364f', 600: '#a80d26', 700: '#8c0b20', 800: '#6d0819', 900: '#4a0511' },
+        coal: { DEFAULT: '#171717', 50: '#f6f6f6', 100: '#ececec', 200: '#d6d6d6', 300: '#b3b3b3', 400: '#8a8a8a', 600: '#4b4b4b', 700: '#353535', 800: '#262626', 900: '#171717', 950: '#0c0c0c' },
         surface: 'rgb(var(--surface) / <alpha-value>)',
         card: 'rgb(var(--card) / <alpha-value>)',
         ink: 'rgb(var(--ink) / <alpha-value>)',
@@ -43,7 +42,7 @@ export default {
             '--tw-prose-bullets': 'rgb(var(--muted))',
             '--tw-prose-hr': 'rgb(var(--line))',
             '--tw-prose-quotes': 'rgb(var(--ink))',
-            '--tw-prose-quote-borders': '#f2cf3f',
+            '--tw-prose-quote-borders': '#c8102e',
             '--tw-prose-captions': 'rgb(var(--muted))',
             '--tw-prose-th-borders': 'rgb(var(--line))',
             '--tw-prose-td-borders': 'rgb(var(--line))',

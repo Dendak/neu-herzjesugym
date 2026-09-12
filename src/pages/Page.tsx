@@ -60,7 +60,7 @@ export default function Page() {
               <ul className="mt-3 space-y-0.5 border-l border-line">
                 {siblings.map((s) => (
                   <li key={s.id}>
-                    <Link to={`/seite/${s.slug}`} className={clsx('-ml-px block border-l-2 py-1.5 pl-4 text-sm transition', s.id === page?.id ? 'border-wine font-semibold text-ink dark:border-sun' : 'border-transparent text-muted hover:border-line hover:text-ink')}>
+                    <Link to={`/seite/${s.slug}`} className={clsx('-ml-px block border-l-2 py-1.5 pl-4 text-sm transition', s.id === page?.id ? 'border-msc font-semibold text-ink dark:border-msc-300' : 'border-transparent text-muted hover:border-line hover:text-ink')}>
                       {decodeHtml(s.title.rendered)}
                     </Link>
                   </li>

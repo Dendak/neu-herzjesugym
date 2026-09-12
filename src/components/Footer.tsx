@@ -30,7 +30,7 @@ const COLS: { title: string; links: { label: string; to?: string; href?: string 
 
 export default function Footer() {
   return (
-    <footer className="mt-16 bg-navy-950 text-navy-100">
+    <footer className="mt-16 bg-coal-950 text-coal-200">
       <div className="container-x grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-1">
           <Logo light />
@@ -63,11 +63,11 @@ export default function Footer() {
               </a>
             ))}
           </div>
-          <p className="mt-4 text-xs leading-relaxed text-navy-200">Von der Europäischen Union finanziert. Die geäußerten Ansichten geben ausschließlich die der Autorinnen und Autoren wieder.</p>
+          <p className="mt-4 text-xs leading-relaxed text-coal-300">Von der Europäischen Union finanziert. Die geäußerten Ansichten geben ausschließlich die der Autorinnen und Autoren wieder.</p>
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="container-x flex flex-col gap-3 py-5 text-xs text-navy-200 sm:flex-row sm:items-center sm:justify-between">
+        <div className="container-x flex flex-col gap-3 py-5 text-xs text-coal-300 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} {SCHOOL.name}, Salzburg</p>
           <div className="flex flex-wrap gap-x-5 gap-y-1">
             <Link to="/seite/impressum-offenlegung" className="hover:text-white">Impressum & Offenlegung</Link>

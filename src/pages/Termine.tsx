@@ -26,14 +26,14 @@ export default function Termine() {
               </div>
             ) : (
               <div className="flex flex-col items-start gap-4 rounded-2xl border border-line bg-card p-8 shadow-soft">
-                <CalendarDays className="h-10 w-10 text-navy dark:text-navy-100" aria-hidden />
+                <CalendarDays className="h-10 w-10 text-coal-900 dark:text-coal-200" aria-hidden />
                 <h2 className="font-display text-3xl font-semibold">Schulkalender anzeigen</h2>
                 <p className="max-w-xl text-muted">
                   Der Kalender wird von Google Kalender bereitgestellt. Beim Laden werden Daten (z. B. Ihre IP-Adresse) an Google übertragen.
                   Mit einem Klick stimmen Sie dem zu; die Entscheidung wird in Ihrem Browser gespeichert.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <button type="button" onClick={accept} className="inline-flex items-center gap-2 rounded-full bg-navy px-6 py-3 font-semibold text-white transition hover:bg-navy-700">
+                  <button type="button" onClick={accept} className="inline-flex items-center gap-2 rounded-full bg-msc px-6 py-3 font-semibold text-white transition hover:bg-msc-600">
                     <ShieldCheck className="h-4 w-4" aria-hidden /> Kalender laden
                   </button>
                   <a href={CAL_OPEN} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full border border-line px-6 py-3 font-semibold transition hover:border-brand hover:text-brand">

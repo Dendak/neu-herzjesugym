@@ -17,26 +17,26 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-navy-950 text-white">
+      <section className="relative isolate overflow-hidden bg-coal-950 text-white">
         <img src={HERO} alt="Luftaufnahme des Schulgebäudes in Salzburg-Liefering" className="absolute inset-0 -z-10 h-full w-full object-cover object-[center_60%]" fetchPriority="high" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-950 via-navy-950/80 to-navy-950/40" aria-hidden />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950/90 via-navy-950/40 to-transparent" aria-hidden />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-coal-950 via-coal-950/75 to-coal-950/30" aria-hidden />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-coal-950/90 via-coal-950/40 to-transparent" aria-hidden />
         <div className="container-x flex min-h-[62vh] flex-col justify-end pb-14 pt-24 sm:min-h-[68vh] lg:pb-20">
-          <Eyebrow className="mb-3 !text-sun animate-fade-up">Gymnasium · Tagesheim · Internat</Eyebrow>
+          <Eyebrow className="mb-3 !text-msc-300 animate-fade-up">Gymnasium · Tagesheim · Internat</Eyebrow>
           <h1 className="max-w-4xl font-display text-5xl font-semibold uppercase leading-[0.95] tracking-tight animate-fade-up sm:text-6xl lg:text-7xl" style={{ animationDelay: '80ms' }}>
-            Privatgymnasium der <span className="text-sun">Herz-Jesu-</span>Missionare
+            Privatgymnasium der <span className="text-msc-400">Herz-Jesu-</span>Missionare
           </h1>
-          <p className="mt-5 max-w-2xl text-lg text-navy-100 animate-fade-up sm:text-xl" style={{ animationDelay: '160ms' }}>
+          <p className="mt-5 max-w-2xl text-lg text-coal-200 animate-fade-up sm:text-xl" style={{ animationDelay: '160ms' }}>
             Wir bemühen uns, den jungen Menschen auf der Basis des christlichen Glaubens ein entsprechendes Menschen-, Welt- und Gottesbild bewusst zu machen.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 animate-fade-up" style={{ animationDelay: '240ms' }}>
-            <Link to="/seite/anmeldung" className="inline-flex items-center gap-2 rounded-full bg-wine px-6 py-3 font-semibold text-white shadow-lift transition hover:bg-wine-600">
+            <Link to="/seite/anmeldung" className="inline-flex items-center gap-2 rounded-full bg-msc px-6 py-3 font-semibold text-white shadow-lift transition hover:bg-msc-600">
               Anmeldung <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link to="/termine" className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 font-semibold backdrop-blur transition hover:bg-white/20">
               <CalendarDays className="h-4 w-4" aria-hidden /> Termine
             </Link>
-            <a href={SCHOOL.webuntis} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full px-5 py-3 font-semibold text-navy-100 transition hover:text-white">
+            <a href={SCHOOL.webuntis} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full px-5 py-3 font-semibold text-coal-200 transition hover:text-white">
               WebUntis <ExternalLink className="h-4 w-4" aria-hidden />
             </a>
           </div>
@@ -50,7 +50,7 @@ export default function Home() {
             const Icon = ICONS[i] ?? CalendarDays;
             const inner = (
               <>
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy transition group-hover:bg-navy group-hover:text-white dark:bg-navy-900 dark:text-navy-100"><Icon className="h-5 w-5" aria-hidden /></span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-msc-50 text-msc transition group-hover:bg-msc group-hover:text-white dark:bg-msc/20 dark:text-msc-300"><Icon className="h-5 w-5" aria-hidden /></span>
                 <span className="block">
                   <span className="block font-semibold leading-tight">{q.label}</span>
                   <span className="block text-xs text-muted">{q.note}</span>
@@ -88,7 +88,7 @@ export default function Home() {
       </Section>
 
       {/* Fachbereiche */}
-      <Section eyebrow="Unterricht" title="Fachbereiche" className="bg-navy-50/60 dark:bg-navy-950/40" action={<ArrowLink to="/fachbereiche">Alle Fachbereiche</ArrowLink>}>
+      <Section eyebrow="Unterricht" title="Fachbereiche" className="bg-coal-50/60 dark:bg-coal-950/40" action={<ArrowLink to="/fachbereiche">Alle Fachbereiche</ArrowLink>}>
         {subjects.error && <ErrorBox error={subjects.error} />}
         <ul className="flex flex-wrap gap-2.5">
           {subjects.loading && Array.from({ length: 18 }).map((_, i) => <li key={i} className="skeleton h-10 w-32 rounded-full" />)}
@@ -112,7 +112,7 @@ export default function Home() {
             { icon: HeartHandshake, title: 'Gebetsinitiative', text: 'Spirituelles Angebot der Schulgemeinschaft im Geist der Herz-Jesu-Missionare.', to: '/seite/gebetsinitiative' },
           ].map((c) => (
             <Link key={c.title} to={c.to} className="group rounded-2xl border border-line bg-card p-6 shadow-soft transition hover:-translate-y-0.5 hover:shadow-card">
-              <c.icon className="h-8 w-8 text-wine dark:text-sun" aria-hidden />
+              <c.icon className="h-8 w-8 text-msc dark:text-msc-300" aria-hidden />
               <h3 className="mt-4 font-display text-2xl font-semibold leading-tight group-hover:text-brand">{c.title}</h3>
               <p className="mt-2 text-sm text-muted">{c.text}</p>
             </Link>

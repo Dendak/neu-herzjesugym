@@ -26,11 +26,11 @@ export default function Search() {
         <form onSubmit={submit} className="mt-6 flex max-w-xl gap-2">
           <label className="relative grow">
             <span className="sr-only">Suchbegriff</span>
-            <SearchIcon className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-navy-300" aria-hidden />
+            <SearchIcon className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-coal-400" aria-hidden />
             <input value={value} onChange={(e) => setValue(e.target.value)} autoFocus placeholder="z. B. Sportfest, Anmeldung, Chemie …"
-              className="w-full rounded-full border border-white/20 bg-white py-3 pl-12 pr-4 text-navy-950 placeholder:text-navy-300 focus:border-sun" />
+              className="w-full rounded-full border border-white/20 bg-white py-3 pl-12 pr-4 text-coal-950 placeholder:text-coal-400 focus:border-msc" />
           </label>
-          <button type="submit" className="rounded-full bg-wine px-6 py-3 font-semibold text-white transition hover:bg-wine-600">Suchen</button>
+          <button type="submit" className="rounded-full bg-msc px-6 py-3 font-semibold text-white transition hover:bg-msc-600">Suchen</button>
         </form>
       </PageHeader>
       <div className="container-x py-10">

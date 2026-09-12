@@ -39,7 +39,7 @@ export default function PostCard({ post, cats, variant = 'default' }: { post: Wp
         <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
           <time className="text-muted" dateTime={post.date}>{formatDate(post.date)}</time>
           {catList.slice(0, 2).map((c) => (
-            <Link key={c.id} to={`/kategorie/${c.slug}`} className="relative z-10 font-semibold uppercase tracking-wide text-wine hover:underline dark:text-sun">{c.name}</Link>
+            <Link key={c.id} to={`/kategorie/${c.slug}`} className="relative z-10 font-semibold uppercase tracking-wide text-msc hover:underline dark:text-msc-300">{c.name}</Link>
           ))}
         </div>
         <h3 className={clsx('font-display font-semibold leading-tight tracking-tight group-hover:text-brand', featured ? 'text-3xl sm:text-4xl' : 'text-2xl')}>
@@ -53,7 +53,7 @@ export default function PostCard({ post, cats, variant = 'default' }: { post: Wp
 
 function Placeholder({ small }: { small?: boolean }) {
   return (
-    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-navy-100 to-navy-200 text-navy/50 dark:from-navy-900 dark:to-navy-800 dark:text-navy-200/60">
+    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-coal-200 to-coal-300 text-coal-900/50 dark:from-coal-900 dark:to-coal-800 dark:text-coal-300/60">
       <ImageOff className={small ? 'h-5 w-5' : 'h-10 w-10'} aria-hidden />
     </div>
   );

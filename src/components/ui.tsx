@@ -6,7 +6,7 @@ import { SCHOOL } from '@/lib/nav';
 
 export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <p className={clsx('font-display text-sm font-semibold uppercase tracking-[0.18em] text-wine dark:text-sun', className)}>{children}</p>
+    <p className={clsx('font-display text-sm font-semibold uppercase tracking-[0.18em] text-msc dark:text-msc-300', className)}>{children}</p>
   );
 }
 
@@ -43,15 +43,15 @@ export function ArrowLink({ to, href, children, className }: { to?: string; href
 
 export function PageHeader({ eyebrow, title, lead, children }: { eyebrow?: string; title: string; lead?: string; children?: ReactNode }) {
   return (
-    <div className="relative overflow-hidden bg-navy-900 text-white">
+    <div className="relative overflow-hidden bg-coal-900 text-white">
       <div className="pointer-events-none absolute inset-0 opacity-70" aria-hidden>
-        <div className="absolute -right-24 -top-24 h-72 w-72 rotate-12 bg-sun/20" style={{ clipPath: 'polygon(20% 0,100% 10%,80% 100%,0 80%)' }} />
-        <div className="absolute -bottom-20 right-1/3 h-64 w-64 -rotate-6 bg-wine/40" style={{ clipPath: 'polygon(0 20%,100% 0,90% 100%,10% 90%)' }} />
+        <div className="absolute -right-24 -top-24 h-72 w-72 rotate-12 bg-white/10" style={{ clipPath: 'polygon(20% 0,100% 10%,80% 100%,0 80%)' }} />
+        <div className="absolute -bottom-20 right-1/3 h-64 w-64 -rotate-6 bg-msc/50" style={{ clipPath: 'polygon(0 20%,100% 0,90% 100%,10% 90%)' }} />
       </div>
       <div className="container-x relative py-12 sm:py-16">
-        {eyebrow && <Eyebrow className="mb-2 !text-sun">{eyebrow}</Eyebrow>}
+        {eyebrow && <Eyebrow className="mb-2 !text-msc-300">{eyebrow}</Eyebrow>}
         <h1 className="font-display text-4xl font-semibold uppercase leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">{title}</h1>
-        {lead && <p className="mt-4 max-w-2xl text-lg text-navy-100">{lead}</p>}
+        {lead && <p className="mt-4 max-w-2xl text-lg text-coal-200">{lead}</p>}
         {children}
       </div>
     </div>
@@ -80,7 +80,7 @@ export function Chip({ to, children, active }: { to: string; children: ReactNode
       to={to}
       className={clsx(
         'inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide transition',
-        active ? 'border-navy bg-navy text-white dark:border-brand dark:bg-brand dark:text-navy-950'
+        active ? 'border-coal-900 bg-coal-900 text-white dark:border-brand dark:bg-brand dark:text-coal-950'
                : 'border-line bg-card text-muted hover:border-brand hover:text-brand',
       )}
     >
@@ -115,8 +115,8 @@ export function SkeletonText({ lines = 8 }: { lines?: number }) {
 
 export function ErrorBox({ error, fallbackHref }: { error?: Error; fallbackHref?: string }) {
   return (
-    <div role="alert" className="flex flex-col gap-3 rounded-2xl border border-wine/30 bg-wine-100/60 p-5 text-sm dark:bg-wine/10 sm:flex-row sm:items-center">
-      <AlertTriangle className="h-6 w-6 shrink-0 text-wine" aria-hidden />
+    <div role="alert" className="flex flex-col gap-3 rounded-2xl border border-msc/30 bg-msc-50/60 p-5 text-sm dark:bg-msc/10 sm:flex-row sm:items-center">
+      <AlertTriangle className="h-6 w-6 shrink-0 text-msc" aria-hidden />
       <div className="grow">
         <p className="font-semibold">Die Inhalte konnten gerade nicht geladen werden.</p>
         <p className="text-muted">{error?.message ?? 'Unbekannter Fehler'} – bitte später noch einmal versuchen.</p>

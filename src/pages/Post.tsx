@@ -30,7 +30,7 @@ export default function Post() {
         <header className="mt-6 border-b border-line pb-8">
           <div className="mb-3 flex flex-wrap gap-2">
             {catList.map((c) => (
-              <Link key={c.id} to={`/kategorie/${c.slug}`} className="rounded-full bg-wine-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-wine dark:bg-wine/20 dark:text-sun">{c.name}</Link>
+              <Link key={c.id} to={`/kategorie/${c.slug}`} className="rounded-full bg-msc-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-msc dark:bg-msc/20 dark:text-msc-300">{c.name}</Link>
             ))}
           </div>
           {state.loading ? <div className="skeleton h-12 w-3/4" /> : (
@@ -54,7 +54,7 @@ export default function Post() {
         )}
       </article>
       {related.data && related.data.items.length > 0 && (
-        <Section eyebrow="Weiterlesen" title={catList[0] ? `Mehr aus ${catList[0].name}` : 'Weitere Beiträge'} className="border-t border-line bg-navy-50/60 dark:bg-navy-950/40">
+        <Section eyebrow="Weiterlesen" title={catList[0] ? `Mehr aus ${catList[0].name}` : 'Weitere Beiträge'} className="border-t border-line bg-coal-50/60 dark:bg-coal-950/40">
           <div className="grid gap-6 md:grid-cols-3">{related.data.items.map((p) => <PostCard key={p.id} post={p} cats={cats} />)}</div>
         </Section>
       )}

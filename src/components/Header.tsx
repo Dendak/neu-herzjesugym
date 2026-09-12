@@ -4,17 +4,15 @@ import { ChevronDown, ExternalLink, Menu, Phone, Mail, Search, X } from 'lucide-
 import clsx from 'clsx';
 import { NAV, SCHOOL, type NavItem } from '@/lib/nav';
 
+const LOGO = import.meta.env.BASE_URL + 'logo-msc.svg';
+
 export function Logo({ light }: { light?: boolean }) {
   return (
     <Link to="/" className="flex items-center gap-3" aria-label="Zur Startseite">
-      <svg viewBox="0 0 64 64" className="h-11 w-11 shrink-0" aria-hidden>
-        <rect width="64" height="64" rx="14" fill="#16345a" />
-        <path d="M32 50 C20 41 12 34 12 25 a10 10 0 0 1 20 -3 a10 10 0 0 1 20 3 c0 9 -8 16 -20 25z" fill="#a3234b" />
-        <path d="M32 18v20M24 26h16" stroke="#f2cf3f" strokeWidth="3.5" strokeLinecap="round" />
-      </svg>
+      <img src={LOGO} alt="" className="h-11 w-11 shrink-0 rounded-md" width="44" height="44" />
       <span className="leading-none">
-        <span className={clsx('block font-display text-2xl font-semibold uppercase tracking-tight', light ? 'text-white' : 'text-navy dark:text-white')}>Privatgymnasium</span>
-        <span className={clsx('mt-0.5 block text-[11px] font-medium uppercase tracking-[0.16em]', light ? 'text-navy-100' : 'text-muted')}>der Herz-Jesu-Missionare · Salzburg</span>
+        <span className={clsx('block font-display text-2xl font-semibold uppercase tracking-tight', light ? 'text-white' : 'text-coal-900 dark:text-white')}>Privatgymnasium</span>
+        <span className={clsx('mt-0.5 block text-[11px] font-medium uppercase tracking-[0.16em]', light ? 'text-coal-200' : 'text-muted')}>der Herz-Jesu-Missionare · Salzburg</span>
       </span>
     </Link>
   );
@@ -53,7 +51,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50">
       {/* Kontaktleiste */}
-      <div className={clsx('hidden bg-navy-950 text-[13px] text-navy-100 transition-all lg:block', scrolled ? 'max-h-0 overflow-hidden opacity-0' : 'max-h-12')}>
+      <div className={clsx('hidden bg-coal-950 text-[13px] text-coal-200 transition-all lg:block', scrolled ? 'max-h-0 overflow-hidden opacity-0' : 'max-h-12')}>
         <div className="container-x flex h-9 items-center justify-between">
           <div className="flex items-center gap-5">
             <span>{SCHOOL.street}, {SCHOOL.city}</span>
@@ -123,15 +121,15 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
   const [q, setQ] = useState('');
   const navigate = useNavigate();
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-navy-950 text-white xl:hidden" role="dialog" aria-modal="true" aria-label="Menü">
+    <div className="fixed inset-0 z-50 flex flex-col bg-coal-950 text-white xl:hidden" role="dialog" aria-modal="true" aria-label="Menü">
       <div className="flex h-[72px] items-center justify-between px-4 sm:px-6">
         <Logo light />
         <button type="button" onClick={onClose} className="rounded-lg p-2" aria-label="Menü schließen"><X className="h-7 w-7" aria-hidden /></button>
       </div>
       <div className="grow overflow-y-auto px-4 pb-10 sm:px-6">
         <form onSubmit={(e) => { e.preventDefault(); if (q.trim()) navigate(`/suche?q=${encodeURIComponent(q.trim())}`); }} className="relative mb-4">
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Suchen …" className="w-full rounded-xl border border-white/15 bg-white/10 py-3 pl-11 pr-4 text-white placeholder:text-navy-200 focus:border-sun" />
-          <Search className="absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-navy-200" aria-hidden />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Suchen …" className="w-full rounded-xl border border-white/15 bg-white/10 py-3 pl-11 pr-4 text-white placeholder:text-coal-300 focus:border-msc" />
+          <Search className="absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-coal-300" aria-hidden />
         </form>
         <ul className="divide-y divide-white/10">
           {NAV.map((item) => (
@@ -147,8 +145,8 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
                     {item.children.map((c) => (
                       <li key={c.label}>
                         {c.href
-                          ? <a href={c.href} target="_blank" rel="noopener" className="inline-flex items-center gap-1.5 py-2 text-navy-100">{c.label}<ExternalLink className="h-3.5 w-3.5 opacity-60" aria-hidden /></a>
-                          : <Link to={c.to ?? '/'} className="block py-2 text-navy-100">{c.label}</Link>}
+                          ? <a href={c.href} target="_blank" rel="noopener" className="inline-flex items-center gap-1.5 py-2 text-coal-200">{c.label}<ExternalLink className="h-3.5 w-3.5 opacity-60" aria-hidden /></a>
+                          : <Link to={c.to ?? '/'} className="block py-2 text-coal-200">{c.label}</Link>}
                       </li>
                     ))}
                   </ul>
@@ -161,14 +159,14 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
             </li>
           ))}
         </ul>
-        <div className="mt-6 space-y-2 text-sm text-navy-100">
+        <div className="mt-6 space-y-2 text-sm text-coal-200">
           <p>{SCHOOL.street}, {SCHOOL.city}</p>
           <a href={SCHOOL.phoneHref} className="block">{SCHOOL.phone}</a>
           <a href={`mailto:${SCHOOL.mail}`} className="block">{SCHOOL.mail}</a>
           <div className="flex flex-wrap gap-4 pt-2">
-            <a href={SCHOOL.webuntis} target="_blank" rel="noopener" className="text-sun">WebUntis</a>
-            <a href={SCHOOL.elternverein} target="_blank" rel="noopener" className="text-sun">Elternverein</a>
-            <a href={SCHOOL.schulshop} target="_blank" rel="noopener" className="text-sun">Schulshop</a>
+            <a href={SCHOOL.webuntis} target="_blank" rel="noopener" className="text-msc-300">WebUntis</a>
+            <a href={SCHOOL.elternverein} target="_blank" rel="noopener" className="text-msc-300">Elternverein</a>
+            <a href={SCHOOL.schulshop} target="_blank" rel="noopener" className="text-msc-300">Schulshop</a>
           </div>
         </div>
       </div>

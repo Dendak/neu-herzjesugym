@@ -19,7 +19,7 @@ export default function Fachbereiche() {
             const ex = textExcerpt(p.content.rendered, 110);
             return (
               <Link key={p.id} to={`/seite/${p.slug}`} className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-card shadow-soft transition hover:-translate-y-0.5 hover:shadow-card">
-                <div className="aspect-[16/9] overflow-hidden bg-gradient-to-br from-navy to-navy-800">
+                <div className="aspect-[16/9] overflow-hidden bg-gradient-to-br from-coal-900 to-coal-800">
                   {img && <img src={img} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />}
                 </div>
                 <div className="p-5">

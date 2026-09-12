@@ -8,7 +8,7 @@
   --ink: 17 27 43;
   --muted: 92 104 122;
   --line: 226 231 238;
-  --brand: 30 74 122;
+  --brand: 200 16 46;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -18,14 +18,14 @@
     --ink: 232 237 245;
     --muted: 156 168 186;
     --line: 42 55 74;
-    --brand: 125 174 226;
+    --brand: 239 138 154;
     color-scheme: dark;
   }
 }
 
 html { scroll-behavior: smooth; }
 body { @apply bg-surface text-ink font-sans antialiased; }
-:focus-visible { @apply outline-none ring-2 ring-sun ring-offset-2 ring-offset-surface; }
+:focus-visible { @apply outline-none ring-2 ring-msc ring-offset-2 ring-offset-surface; }
 
 .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
 .skeleton { @apply rounded-lg bg-line/70 animate-pulse; }
