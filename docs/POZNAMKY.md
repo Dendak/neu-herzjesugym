@@ -2,10 +2,18 @@
 
 ## Offen / nächste Schritte
 - Woran als Nächstes gearbeitet wird, ist noch offen (mit dem Nutzer klären).
-- `README.md` an den aktuellen Stand anpassen (eigene Domain, `deploy.sh neu.herzjesugym.com`, `npm ci`).
+- `README.md` an den aktuellen Stand anpassen (eigene Domain, Deploy per GitHub Actions, `npm ci`).
+- Die 2 Lint-Fehler (`react-hooks/set-state-in-effect`) beheben.
 - Später: `noindex` in `index.html` entfernen, wenn die neue Seite die alte ersetzt.
 
 ## Verlauf
+
+### 2026-10-14 – Automatischer Deploy
+- Neue Regel: jede Änderung sofort auf `main` und live. Dafür `.github/workflows/deploy.yml`:
+  baut bei Push auf `main` mit `BASE_PATH=/` und force-pusht `dist/` inkl. `CNAME` nach `gh-pages`
+  (`GITHUB_TOKEN`, keine Pages-Einstellung geändert, keine Secrets). `deploy.sh` nur noch Notlösung.
+- `CLAUDE.md` angepasst („nur auf ausdrücklichen Wunsch" / „main deployt nicht" entfernt).
+- `npm run lint` hat 2 bestehende Fehler (`react-hooks/set-state-in-effect`), Build ist sauber.
 
 ### 2026-10-13 – Gerätewechsel, Stand unverändert
 - Neues Windows-Gerät eingerichtet: Repo geklont, `git pull` aktuell, am Code nichts geändert, nichts deployt.
