@@ -1,5 +1,5 @@
-// Zugriff auf die WordPress-REST-API der bestehenden Website (herzjesugym.com).
-export const WP_ORIGIN = 'https://www.herzjesugym.com';
+// Zugriff auf die WordPress-REST-API der bestehenden Website (herzjesugym.at).
+export const WP_ORIGIN = 'https://www.herzjesugym.at';
 const API = `${WP_ORIGIN}/wp-json/wp/v2`;
 
 export interface Rendered { rendered: string }

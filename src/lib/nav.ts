@@ -15,7 +15,7 @@ export const SCHOOL = {
   phoneHref: 'tel:+43662432901',
   fax: '+43 662 432901 219',
   mail: 'info@herzjesugym.at',
-  oldSite: 'https://www.herzjesugym.com',
+  oldSite: 'https://www.herzjesugym.at',
   webuntis: 'https://erato.webuntis.com/WebUntis/?school=herzjesugym',
   sprechstunden: 'https://erato.webuntis.com/WebUntis/?school=herzjesugym#/basic/officehours',
   internat: 'https://internat.herzjesugym.com/',
